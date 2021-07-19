@@ -10,3 +10,7 @@ This is a very simple SMF (Standard MIDI File) player with Jetpack Compose Deskt
 1. Select MIDI Output device if needed. (you can't change it during playing)
 1. Click Play button.
 1. Slider shows current position of the player. 
+
+## How to Build
+
+Just use `packageUberJarForCurrentOS` for Multiplatform targets.

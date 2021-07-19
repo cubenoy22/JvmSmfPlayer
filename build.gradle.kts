@@ -17,28 +17,15 @@ repositories {
 }
 
 dependencies {
-    implementation(compose.desktop.currentOs)
+    implementation(compose.desktop.macos_arm64)
+    implementation(compose.desktop.macos_x64)
+    implementation(compose.desktop.windows_x64)
+    implementation(compose.desktop.linux_arm64)
+    implementation(compose.desktop.linux_x64)
 }
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "11"
-}
-
-tasks.withType<Jar> {
-    manifest {
-        attributes["Main-Class"] = "MainKt"
-    }
-}
-
-tasks.register<Jar>("uberJar") {
-    archiveClassifier.set("uber")
-
-    from(sourceSets.main.get().output)
-
-    dependsOn(configurations.runtimeClasspath)
-    from({
-        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-    })
 }
 
 compose.desktop {
